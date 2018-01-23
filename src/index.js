@@ -103,6 +103,7 @@ type Props = {
   z?: number;
   dragGrid?: Grid;
   rotation: number;
+  ignoreCssTransform?: boolean;  
   default?: {
     x: number;
     y: number;
@@ -157,6 +158,7 @@ export default class Rnd extends React.Component<Props, State> {
     maxWidth: Number.MAX_SAFE_INTEGER,
     maxHeight: Number.MAX_SAFE_INTEGER,
     rotation: 0,
+    ignoreCssTransform: false,
     onResizeStart: () => { },
     onResize: () => { },
     onResizeStop: () => { },
@@ -165,6 +167,7 @@ export default class Rnd extends React.Component<Props, State> {
     onDragStop: () => { },
   };
   rotation: number;
+  ignoreCssTransform: boolean;  
   resizable: (React$ElementRef<typeof Resizable> | null);
   draggable: Draggable;
   onResizeStart: ResizeStartCallback;
@@ -440,6 +443,7 @@ export default class Rnd extends React.Component<Props, State> {
       <Draggable
         ref={(c: Draggable) => { this.draggable = c; }}
         rotation={this.props.rotation}
+        ignoreCssTransform={this.props.ignoreCssTransform}
         handle={this.props.dragHandleClassName}
         defaultPosition={this.props.default}
         onStart={this.onDragStart}
