@@ -49,6 +49,7 @@ type Size = {
 type State = {
   disableDragging: boolean;
   z?: number;
+  rotation: number;
   original: Position;
   bounds: {
     top: number;
@@ -101,6 +102,7 @@ export type HandleStyles = {
 type Props = {
   z?: number;
   dragGrid?: Grid;
+  rotation: number;
   default?: {
     x: number;
     y: number;
@@ -154,6 +156,7 @@ export default class Rnd extends React.Component<Props, State> {
   static defaultProps = {
     maxWidth: Number.MAX_SAFE_INTEGER,
     maxHeight: Number.MAX_SAFE_INTEGER,
+    rotation: 0,
     onResizeStart: () => { },
     onResize: () => { },
     onResizeStop: () => { },
@@ -161,6 +164,7 @@ export default class Rnd extends React.Component<Props, State> {
     onDrag: () => { },
     onDragStop: () => { },
   };
+  rotation: number;
   resizable: (React$ElementRef<typeof Resizable> | null);
   draggable: Draggable;
   onResizeStart: ResizeStartCallback;
@@ -181,6 +185,7 @@ export default class Rnd extends React.Component<Props, State> {
     this.state = {
       disableDragging: false,
       z: props.z,
+      rotation: props.rotation,
       original: {
         x: 0,
         y: 0,
@@ -429,6 +434,7 @@ export default class Rnd extends React.Component<Props, State> {
     return (
       <Draggable
         ref={(c: Draggable) => { this.draggable = c; }}
+        rotation={this.props.rotation}
         handle={this.props.dragHandleClassName}
         defaultPosition={this.props.default}
         onStart={this.onDragStart}
