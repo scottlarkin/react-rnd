@@ -418,6 +418,10 @@ export default class Rnd extends React.Component<Props, State> {
     this.setState({ z });
   }
 
+  updateRotation(rotation: number) {
+    this.setState({ rotation });
+  }
+
   render(): React.Node {
     const cursorStyle = this.props.disableDragging || this.props.dragHandleClassName
       ? { cursor: 'normal' }
@@ -431,6 +435,9 @@ export default class Rnd extends React.Component<Props, State> {
     // HACK: Wait for setting relative to parent element.
     if (!this.state.isMounted) return <div />;
     const maxHeight = this.props._freeBottomBounds ? 2147483647 : this.state.maxHeight; // eslint-disable-line
+
+    console.log('passing to draggable...', this.props.rotation);
+
     return (
       <Draggable
         ref={(c: Draggable) => { this.draggable = c; }}
