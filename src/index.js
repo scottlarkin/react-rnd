@@ -439,6 +439,8 @@ export default class Rnd extends React.Component<Props, State> {
     if (!this.state.isMounted) return <div />;
     const maxHeight = this.props._freeBottomBounds ? 2147483647 : this.state.maxHeight; // eslint-disable-line
 
+    console.log('passing prop value ignoreCssTransform: ', this.props.ignoreCssTransform);
+
     return (
       <Draggable
         ref={(c: Draggable) => { this.draggable = c; }}
